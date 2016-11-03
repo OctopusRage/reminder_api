@@ -1,0 +1,12 @@
+development:
+  cloud_name: elaine-dev
+  api_key: '836753356524136'
+  api_secret: eaBUqh97HnFLkx9knrRMIIaxWOg
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: elaine-dev
+  api_key: '836753356524136'
+  api_secret: eaBUqh97HnFLkx9knrRMIIaxWOg
+  enhance_image_tag: true
+  static_image_support: true

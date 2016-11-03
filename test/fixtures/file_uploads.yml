@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  raw: MyString
+  hash_id: MyString
+  name: MyString
+  ext: MyString
+  uploader: 
+
+two:
+  raw: MyString
+  hash_id: MyString
+  name: MyString
+  ext: MyString
+  uploader: 
