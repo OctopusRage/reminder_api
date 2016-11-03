@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103123855) do
+ActiveRecord::Schema.define(version: 20161103141639) do
 
   create_table "file_uploads", force: :cascade do |t|
     t.string   "raw"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20161103123855) do
     t.string   "uploader_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "url"
   end
 
   create_table "priviledges", force: :cascade do |t|
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 20161103123855) do
     t.integer  "user_type_id"
     t.boolean  "verified",               default: false
     t.string   "gender"
+    t.datetime "last_login_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

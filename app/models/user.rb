@@ -17,7 +17,17 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
     format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   
-  belongs_to :user_type
+  belongs_to :user_type  
+
+  def set_lower_email
+    self.email = self.email.downcase  
+  end
+    
+  def image(base_url=nil)
+    base_url = ENV["AVATAR_BASE_URL"]
+    url = "#{base_url}#{avatar_url}" if avatar_url
+    url || ""
+  end
 
   def set_auth_token
     self.authentication_token = loop do
@@ -37,11 +47,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def as_credential
+  def credential_as_json(options={})
     dob = (date_of_birth.present?)? (date_of_birth+0.hours).iso8601 : DEFAULT_DATE_OF_BIRTH
     {
       id: id,
-      fullname: fullname,
+      name: name,
       email: email,
       gender: gender,
       age: age(date_of_birth) || 0,
@@ -51,6 +61,7 @@ class User < ActiveRecord::Base
       city: city ||"",
       latitude: latitude || DEFAULT_ORIGIN_LAT,
       longitude: longitude ||DEFAULT_ORIGIN_LNG,
+      image: image(options[:base_url]),
       authentication_token: authentication_token
     }
   end
@@ -59,7 +70,7 @@ class User < ActiveRecord::Base
     dob = (date_of_birth.present?)? (date_of_birth+0.hours).iso8601 : DEFAULT_DATE_OF_BIRTH
     {
       id: id,
-      fullname: fullname,
+      name: name,
       email: email,
       gender: gender,
       age: age(date_of_birth) || 0,
@@ -69,6 +80,7 @@ class User < ActiveRecord::Base
       city: city ||"",
       latitude: latitude || DEFAULT_ORIGIN_LAT,
       longitude: longitude ||DEFAULT_ORIGIN_LNG,
+      image: image(options[:base_url])
     }
   end
 
