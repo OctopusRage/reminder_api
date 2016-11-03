@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
     format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   
-  belongs_to :user_type  
+  belongs_to :user_type
+  has_many :file_uploads  
 
   def set_lower_email
     self.email = self.email.downcase  
