@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #
   # get 'secure' => 'secure#index'
   # get 'secure/logout' => 'secure#logout'
-
+  get '/' => 'static_pages#index'
   if ENV['API_SUBDOMAIN']
     subdomain_constraint = { subdomain: ENV['API_SUBDOMAIN'].split(',') }
   else
