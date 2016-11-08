@@ -1,7 +1,7 @@
 class Api::V1::Users::SchedulesController < ApplicationController
 	before_action :authorize_user
 	def index
-		schedules = Schedule.all
+		schedules = current_user.schedules.all
 		render json: {
 			status: 'success',
 			data: schedules
@@ -9,7 +9,7 @@ class Api::V1::Users::SchedulesController < ApplicationController
 	end
 
 	def create
-		schedule = Schedule.new(schedule_params)
+		schedule = current_user.schedules.new(schedule_params)
 		if schedule.save
 			render json: {
 				status: 'success',
@@ -24,7 +24,7 @@ class Api::V1::Users::SchedulesController < ApplicationController
 	end
 
 	def update
-		schedule = Schedule.find(params[:id])
+		schedule = current_user.schedules.find(params[:id])
 		if schedule.update(schedule_params)
 			render json: {
 				status: 'success',
@@ -39,7 +39,7 @@ class Api::V1::Users::SchedulesController < ApplicationController
 	end
 
 	def show
-		schedule = Schedule.find(params[:id])
+		schedule = current_user.schedules.find(params[:id])
 		render json: {
 			status: 'success',
 			data: schedule
@@ -47,7 +47,7 @@ class Api::V1::Users::SchedulesController < ApplicationController
 	end
 
 	def destroy
-		schedule = Schedule.find(params[:id])
+		schedule = current_user.schedules.find(params[:id])
 		if schedule.delete
 			render json: {
 				status: 'success'
