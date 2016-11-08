@@ -1,4 +1,4 @@
-class Api::V1::Users::ScheduleController < ApplicationController
+class Api::V1::Users::SchedulesController < ApplicationController
 	before_action :authorize_user
 	def index
 		schedules = Schedule.all
@@ -52,11 +52,16 @@ class Api::V1::Users::ScheduleController < ApplicationController
 			render json: {
 				status: 'success'
 			}, status: 204
+		else
+			render json: {
+				status:'fail'
+			}, status: 422
+		end
 	end
 
 	private
 
-	def schedule_params
-		params.permit(:title, :started_at, :ended_at, :description, :location, :user_id, :status)
-	end
+		def schedule_params
+			params.permit(:title, :started_at, :ended_at, :description, :location, :user_id, :status)
+		end
 end
