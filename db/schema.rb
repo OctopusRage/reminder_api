@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103163543) do
+ActiveRecord::Schema.define(version: 20161108090607) do
 
   create_table "file_uploads", force: :cascade do |t|
     t.string   "raw"
@@ -31,6 +31,20 @@ ActiveRecord::Schema.define(version: 20161103163543) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "schedules", force: :cascade do |t|
+    t.string   "title"
+    t.date     "started_at"
+    t.date     "ended_at"
+    t.text     "description"
+    t.string   "location"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "schedules", ["user_id"], name: "index_schedules_on_user_id"
 
   create_table "user_type_priviledges", force: :cascade do |t|
     t.integer  "priviledge_id"
