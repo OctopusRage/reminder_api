@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   
   belongs_to :user_type
   has_many :file_uploads  
+  has_many :schedules
 
   def set_lower_email
     self.email = self.email.downcase  
