@@ -2,7 +2,7 @@ class Schedule < ActiveRecord::Base
   belongs_to :user
 
   validates :title, presence: true
-  validate :valid_date_range?
+  #validate :valid_date_range?
 
   scope :desc, -> {order(created_at: :desc)}
 
